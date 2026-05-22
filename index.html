@@ -1,0 +1,834 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Build Your First AI Agent with Google ADK">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Google ADK Guide: Build Your First Agent - Google ADK Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#google-adk-build-your-first-agent-on-gemini-enterprise-agent-platform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Google ADK Guide" class="md-header__button md-logo" aria-label="Google ADK Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Google ADK Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Google ADK Guide: Build Your First Agent
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Google ADK Guide" class="md-nav__button md-logo" aria-label="Google ADK Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Google ADK Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google ADK Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Google ADK Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#section-1-what-is-google-adk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 1 – What is Google ADK?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-2-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 2 – Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-3-what-is-an-ai-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 3 – What is an AI Agent?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 3 – What is an AI Agent?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-react-loop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The ReAct Loop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-4-initialize-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 4 – Initialize Your Project
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 4 – Initialize Your Project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#terminal-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terminal interaction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-5-how-to-test-your-agent-using-adk-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 5 – How to Test Your Agent Using ADK Web
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 5 – How to Test Your Agent Using ADK Web">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-launching-the-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Launching the Dashboard
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-running-test-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Running Test Queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-adk-web-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. ADK Web Features
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-6-grounding-with-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 6 – Grounding with Tools
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 6 – Grounding with Tools">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-search-maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example: Search &amp; Maps
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#section-7-the-parts-prompt-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section 7 – The P.A.R.T.S. Prompt Framework
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Section 7 – The P.A.R.T.S. Prompt Framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-it-matters-before-vs-after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why it matters – before vs. after
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What's Next?
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Disclaimer</strong> – This tutorial uses <strong>Google ADK v1.31.0</strong>.</p>
+</div>
+<h1 id="google-adk-build-your-first-agent-on-gemini-enterprise-agent-platform">Google ADK: Build Your First Agent on Gemini Enterprise Agent Platform<a class="headerlink" href="#google-adk-build-your-first-agent-on-gemini-enterprise-agent-platform" title="Permanent link">&para;</a></h1>
+<div class="toc-grid">
+  <a href="#section-1-what-is-google-adk" class="toc-card">
+    <div class="toc-card-header">
+      <span class="toc-card-number">1</span>
+      <span>What is Google ADK?</span>
+    </div>
+    <div class="toc-card-desc">Introduction to the Google Agent Development Kit and the rebranding to Gemini Enterprise Agent Platform.</div>
+  </a>
+
+  <a href="#section-2-prerequisites" class="toc-card">
+    <div class="toc-card-header">
+      <span class="toc-card-number">2</span>
+      <span>Prerequisites</span>
+    </div>
+    <div class="toc-card-desc">System requirements, installing uv, authenticating with Google Cloud, and enabling the required APIs.</div>
+  </a>
+
+  <a href="#section-3-what-is-an-ai-agent" class="toc-card">
+    <div class="toc-card-header">
+      <span class="toc-card-number">3</span>
+      <span>What is an AI Agent?</span>
+    </div>
+    <div class="toc-card-desc">Understanding the core concepts of agents, tools, and the reasoning-action loop (ReAct model).</div>
+  </a>
+
+  <a href="#section-4-initialize-your-project" class="toc-card">
+    <div class="toc-card-header">
+      <span class="toc-card-number">4</span>
+      <span>Initialize Your Project</span>
+    </div>
+    <div class="toc-card-desc">Step-by-step instructions to create your project and initialize your first agent using `adk create`.</div>
+  </a>
+
+  <a href="#section-5-how-to-test-your-agent-using-adk-web" class="toc-card">
+    <div class="toc-card-header">
+      <span class="toc-card-number">5</span>
+      <span>Test Using ADK Web</span>
+    </div>
+    <div class="toc-card-desc">How to run, use, and debug your agent using the visual traces and metrics in the ADK Web Dashboard.</div>
+  </a>
+
+  <a href="#section-6-grounding-with-tools" class="toc-card">
+    <div class="toc-card-header">
+      <span class="toc-card-number">6</span>
+      <span>Grounding with Tools</span>
+    </div>
+    <div class="toc-card-desc">Integrating live news search and maps location intelligence to provide accurate, real-time responses.</div>
+  </a>
+
+  <a href="#section-7-the-parts-prompt-framework" class="toc-card">
+    <div class="toc-card-header">
+      <span class="toc-card-number">7</span>
+      <span>P.A.R.T.S. Prompt Framework</span>
+    </div>
+    <div class="toc-card-desc">Applying structured prompt engineering rules (Persona, Aim, Recipients, Theme, Structure).</div>
+  </a>
+</div>
+
+<h2 id="section-1-what-is-google-adk">Section 1 – What is Google ADK?<a class="headerlink" href="#section-1-what-is-google-adk" title="Permanent link">&para;</a></h2>
+<p>The <strong>Google Agent Development Kit (ADK)</strong> is an open-source, code-first developer framework designed to build, test, debug, and deploy sophisticated AI agents and multi-agent systems. </p>
+<p>Key capabilities of the ADK include:
+* <strong>First-Class Gemini Integration</strong>: Native support for Gemini models (e.g., Gemini 2.5 Flash and Pro).
+* <strong>Standardized Tool Connection</strong>: Integrates with external tools, APIs, and data sources via the Model Context Protocol (MCP).
+* <strong>Multi-Agent Orchestration</strong>: Supports predictable, pipelined, or dynamic LLM-driven routing, allowing agents to collaborate and delegate using the Agent-to-Agent (A2A) protocol.</p>
+<p>In production, agents built with the ADK run on the managed <strong>Gemini Enterprise Agent Platform(formerly Vertex AI)</strong>, which provides enterprise-grade runtime features including persistent state, secure sandboxes, logging, and performance telemetry.</p>
+<p><a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-gemini-enterprise-agent-platform" target="_blank">Read the Rebranding Announcement</a></p>
+<h2 id="section-2-prerequisites">Section 2 – Prerequisites<a class="headerlink" href="#section-2-prerequisites" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Python 3.12 or newer</strong> – required runtime.</li>
+<li>
+<p><strong>uv</strong> – package manager. Install with:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-LsSf<span class="w"> </span>https://astral.sh/uv/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sh
+</span></code></pre></div>
+<p>Verify: <code>uv --version</code>.</p>
+<div class="admonition info">
+<p class="admonition-title">Why use uv?</p>
+<p><strong>uv</strong> is an extremely fast Python package and project manager written in Rust. We use it in this guide because:</p>
+<ul>
+<li><strong>Performance</strong>: It is 10–100x faster than standard tools like <code>pip</code> or <code>pip-tools</code>.</li>
+<li><strong>Simplicity</strong>: It handles Python installation, virtual environment management, and dependency locking in a single, unified tool.</li>
+<li><strong>Consistency</strong>: It automatically manages and locks package versions (<code>uv.lock</code>), ensuring your agent project runs identically on every developer's machine and in production.</li>
+<li><strong>No Environment Activation Friction</strong>: You don't need to manually activate virtual environments (e.g. <code>source .venv/bin/activate</code>). Prefixing commands with <code>uv run &lt;command&gt;</code> automatically resolves dependencies and runs your script inside the project's isolated runtime environment.</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Google Cloud SDK (<code>gcloud</code>)</strong> – install from <a href="https://cloud.google.com/sdk/docs/install">https://cloud.google.com/sdk/docs/install</a> if you don’t have it. Then authenticate:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gcloud<span class="w"> </span>auth<span class="w"> </span>application-default<span class="w"> </span>login
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">What does this command do?</p>
+<p>Running <code>gcloud auth application-default login</code> opens your browser to log in with your Google account, generating <strong>Application Default Credentials (ADC)</strong> stored locally on your machine.</p>
+<p>When the Google ADK runs, it automatically retrieves these credentials to authenticate calls to Gemini and the Vertex AI APIs. This allows you to build and test agents locally without having to hardcode API keys or manage service account secrets.</p>
+</div>
+</li>
+<li>
+<p><strong>Google Cloud Project ID</strong> – needed to route requests to Gemini.</p>
+<ul>
+<li><strong>Option A (Console)</strong> – Open the <a href="https://console.cloud.google.com/">Google Cloud Console</a>, click the project dropdown, and copy the <strong>Project ID</strong>.</li>
+<li><strong>Option B (Terminal)</strong> – Run <code>gcloud config get-value project</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Enable Gemini Enterprise Agent Platform API</strong> – turn on the AI service in your Google Cloud Project.</p>
+<ul>
+<li><strong>Option A (Console)</strong> – Go to the API Library in the Google Cloud Console, search for "Vertex AI API", and click <strong>Enable</strong>.</li>
+<li><strong>Option B (Terminal)</strong> – Run:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gcloud<span class="w"> </span>services<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>aiplatform.googleapis.com
+</span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h2 id="section-3-what-is-an-ai-agent">Section 3 – What is an AI Agent?<a class="headerlink" href="#section-3-what-is-an-ai-agent" title="Permanent link">&para;</a></h2>
+<p>An AI agent is a program that uses a language model to decide when to call external tools (like search APIs, maps, or databases) to complete a task.</p>
+<h3 id="the-react-loop">The ReAct Loop<a class="headerlink" href="#the-react-loop" title="Permanent link">&para;</a></h3>
+<p><pre class="mermaid"><code>graph TD
+    A[User Goal] --&gt; B{Reason}
+    B --&gt; C[Act: Call Tool]
+    C --&gt; D[Observe: Result]
+    D --&gt; B
+    B --&gt; E[Final Answer]</code></pre>
+1. <strong>Reason</strong> – Decide what to do next.
+2. <strong>Act</strong> – Call a tool (like Google Search).
+3. <strong>Observe</strong> – Read the tool's output and decide if the task is complete.</p>
+<h2 id="section-4-initialize-your-project">Section 4 – Initialize Your Project<a class="headerlink" href="#section-4-initialize-your-project" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mkdir<span class="w"> </span>my-agent<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>my-agent
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>uv<span class="w"> </span>init<span class="w">                       </span><span class="c1"># Initialize a new Python project structure</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>uv<span class="w"> </span>add<span class="w"> </span>google-adk<span class="o">==</span><span class="m">1</span>.31.0<span class="w">     </span><span class="c1"># Add the Google ADK dependency to your project</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>uv<span class="w"> </span>run<span class="w"> </span>adk<span class="w"> </span>create<span class="w"> </span>my_first_agent<span class="w">  </span><span class="c1"># Scaffold the default agent files and settings</span>
+</span></code></pre></div>
+<h3 id="terminal-interaction">Terminal interaction<a class="headerlink" href="#terminal-interaction" title="Permanent link">&para;</a></h3>
+<p>When <code>adk create</code> runs, you’ll see:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Choose<span class="w"> </span>model:<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>gemini-2.5-flash<span class="o">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Choose<span class="w"> </span>backend:<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">(</span>Gemini<span class="w"> </span>Enterprise<span class="w"> </span>Agent<span class="w"> </span>Platform<span class="o">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Enter<span class="w"> </span>Project<span class="w"> </span>ID:<span class="w"> </span><span class="c1"># your‑project‑id</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Enter<span class="w"> </span>Region:<span class="w"> </span><span class="c1"># press Enter for us-central1</span>
+</span></code></pre></div>
+<p>This scaffolding process creates the main script file for your agent, named <code>agent.py</code>, in your project directory. This is the script you will configure and run in the subsequent sections of this guide.</p>
+<h2 id="section-5-how-to-test-your-agent-using-adk-web">Section 5 – How to Test Your Agent Using ADK Web<a class="headerlink" href="#section-5-how-to-test-your-agent-using-adk-web" title="Permanent link">&para;</a></h2>
+<p>The ADK Web Dashboard provides a visual playground to interact with your agent, inspect intermediate logic, and debug performance bottlenecks.</p>
+<h3 id="1-launching-the-dashboard">1. Launching the Dashboard<a class="headerlink" href="#1-launching-the-dashboard" title="Permanent link">&para;</a></h3>
+<p>Run the following command in your terminal:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>uv<span class="w"> </span>run<span class="w"> </span>adk<span class="w"> </span>web
+</span></code></pre></div>
+Once started, open your browser and navigate to <strong><a href="http://localhost:8080">http://localhost:8080</a></strong>.</p>
+<h3 id="2-running-test-queries">2. Running Test Queries<a class="headerlink" href="#2-running-test-queries" title="Permanent link">&para;</a></h3>
+<p>Start with simple test queries to verify your agent's behavior:
+* <strong>The Warm-up:</strong> Ask a simple fact-based question: <em>“What is the capital of Philippines?”</em>
+* <strong>The Grounding Challenge:</strong> Ask for real-time information: <em>“What is the latest news in the Philippines today?”</em> (This forces the agent to decide whether to call a search tool).</p>
+<h3 id="3-adk-web-features">3. ADK Web Features<a class="headerlink" href="#3-adk-web-features" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Trace Panel:</strong> Visualizes the execution timeline of your agent's reasoning loop (e.g., <code>SmartSearch</code> → <code>call_llm</code> → <code>generate_content</code>). Look for the horizontal blue bars; they indicate how much latency each individual step contributes to the total run.</li>
+<li><strong>Telemetry and Stats:</strong> The sidebar details key metrics for every query execution:<ul>
+<li><code>gen_ai.usage.output_tokens</code> – Total generated output tokens.</li>
+<li><code>gen_ai.request.model</code> – The active LLM configuration (<code>gemini-2.5-flash</code>).</li>
+<li><strong>Latency</strong> – The round-trip time for the request.</li>
+</ul>
+</li>
+<li><strong>Events vs. Traces:</strong> <ul>
+<li><strong>Events</strong> capture the raw JSON payload exchanged with the backend.</li>
+<li><strong>Traces</strong> profile the structural timeline, showing call hierarchies and step-by-step execution metrics.</li>
+</ul>
+</li>
+<li><strong>Session Control:</strong> Click the <strong>New Session</strong> button at the top of the chat panel to wipe the conversational history clean and reset memory for a fresh conversation.</li>
+</ul>
+<p><img alt="ADK Web Dashboard Traces View" src="images/adk_web_traces.png" /></p>
+<ul>
+<li>** Analyzing Agent Traces
+Drill down into individual model calls and tool executions to debug prompt inputs, response outputs, and internal parameters.</li>
+</ul>
+<p><img alt="ADK Trace Span Details" src="images/adk_span_details.png" /></p>
+<h2 id="section-6-grounding-with-tools">Section 6 – Grounding with Tools<a class="headerlink" href="#section-6-grounding-with-tools" title="Permanent link">&para;</a></h2>
+<p>Tools let the agent pull in real-time information. Grounding ensures responses are accurate and up-to-date rather than based only on static model weights.</p>
+<p>To understand why tool integration is crucial, it is helpful to look at two core concepts:</p>
+<div class="grid cards">
+<ul>
+<li>
+<p><span class="concept-title concept-hallucination">⚠️ Hallucination</span></p>
+<p>Occurs when an AI provides factually incorrect information with confidence. LLMs are prediction engines that may generate logical-sounding but false responses when they lack specific facts.</p>
+</li>
+<li>
+<p><span class="concept-title concept-grounding">⚓ Grounding</span></p>
+<p>Connects AI reasoning to a verifiable source of truth to reduce hallucinations.</p>
+</li>
+</ul>
+</div>
+<h3 id="example-search-maps">Example: Search &amp; Maps<a class="headerlink" href="#example-search-maps" title="Permanent link">&para;</a></h3>
+<p>Update <code>agent.py</code>:</p>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">google.adk</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">agents</span><span class="p">,</span> <span class="n">tools</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">root_agent</span> <span class="o">=</span> <span class="n">agents</span><span class="o">.</span><span class="n">LlmAgent</span><span class="p">(</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SmartSearch&quot;</span><span class="p">,</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="n">model</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">Gemini</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gemini-2.5-flash&quot;</span><span class="p">),</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="n">tools</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        <span class="n">tools</span><span class="o">.</span><span class="n">google_search</span><span class="p">,</span>         <span class="c1"># Live news</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        <span class="n">tools</span><span class="o">.</span><span class="n">google_maps_grounding</span>  <span class="c1"># Location intelligence</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="p">],</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="n">instruction</span><span class="o">=</span><span class="s2">&quot;You are an expert research and location assistant. Use tools to verify all facts and find places.&quot;</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">)</span>
+</span></code></pre></div>
+<em>Note:</em> You don't need a separate API key for Google Search. The Gemini Enterprise Agent Platform routes these requests automatically.</p>
+<p><img alt="Agent answering the News Challenge" src="images/news_search_output.png" />
+<img alt="Example of grounded coffee shop search" src="images/coffee_search_output.png" /></p>
+<h2 id="section-7-the-parts-prompt-framework">Section 7 – The P.A.R.T.S. Prompt Framework<a class="headerlink" href="#section-7-the-parts-prompt-framework" title="Permanent link">&para;</a></h2>
+<p>The <strong>P.A.R.T.S.</strong> framework helps you write structured system instructions and prompts that produce consistent, high-quality agent behavior. By defining each element explicitly, you apply prompt engineering best practices to reduce ambiguity and enforce clear formatting constraints.</p>
+<pre class="mermaid"><code>graph TD
+    Hub((P.A.R.T.S.))
+    Hub --- P[Persona: Identity]
+    Hub --- A[Aim: Mission]
+    Hub --- R[Recipients: Audience]
+    Hub --- T[Theme: Tone]
+    Hub --- S[Structure: Format]</code></pre>
+<ul>
+<li><strong>Persona (P)</strong> – Who the agent is (e.g., its role or identity).</li>
+<li><strong>Aim (A)</strong> – What the agent must accomplish (its task or mission).</li>
+<li><strong>Recipients (R)</strong> – Who will consume the output.</li>
+<li><strong>Theme (T)</strong> – The desired tone, style, or guidelines.</li>
+<li><strong>Structure (S)</strong> – The exact output format or layout.</li>
+</ul>
+<h3 id="why-it-matters-before-vs-after">Why it matters – before vs. after<a class="headerlink" href="#why-it-matters-before-vs-after" title="Permanent link">&para;</a></h3>
+<p>We can see P.A.R.T.S. in action by refining the basic agent instruction from Section 6:</p>
+<ul>
+<li>
+<p><strong>Without P.A.R.T.S. (Generic Instruction)</strong>:</p>
+<ul>
+<li><strong>Instruction:</strong> <em>"You are an expert research and location assistant. Use tools to verify all facts and find places."</em></li>
+<li><strong>Analysis:</strong> While it specifies the role (Persona) and the core task (Aim), it lacks clear constraints on output formatting, tone, and audience context, leaving the agent's behavior up to generic defaults.</li>
+</ul>
+</li>
+<li>
+<p><strong>With P.A.R.T.S. (Consolidated Instruction)</strong>:
+    Rather than managing disjointed prompt details, you merge the components directly into a single, cohesive system instruction block:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">instruction</span><span class="o">=</span><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s2">You are an expert research and location assistant equipped with search and maps tools [P]. </span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s2">Verify user assertions using real-time search and find precise geographical locations using maps grounding [A] </span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s2">for general users [R]. </span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s2">Keep your response objective, neutral, and evidence-based [T]. </span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s2">Structure your output using Markdown headers, status-flagged bullet points, and key-value listings [S].</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s2">&quot;&quot;&quot;</span>
+</span></code></pre></div>
+</li>
+</ul>
+<hr />
+<h2 id="whats-next">What's Next?<a class="headerlink" href="#whats-next" title="Permanent link">&para;</a></h2>
+<p>Now that you have built a basic grounded agent, you can try customizing it:</p>
+<ol>
+<li>Edit <code>agent.py</code> and change the <code>instruction</code> to a different persona (for example, a pirate or historical figure).</li>
+<li>Restart the web UI and ask the same question to see how the response tone changes.</li>
+</ol>
+<hr />
+<div class="admonition info">
+<p class="admonition-title">About the Creator</p>
+<p>This guide was built and is maintained by <strong>Renzi Vidal</strong> for <a href="https://www.facebook.com/groups/1225639754738756/" target="_blank">Data Engineering Pilipinas</a> AI Study Group 2026. If you found this tutorial helpful, join our community and let's connect on <a href="https://www.linkedin.com/in/ultrenz-vidal/" target="_blank">LinkedIn</a>!</p>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.expand", "content.code.copy", "content.code.select", "toc.integrate"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
