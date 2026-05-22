@@ -1,0 +1,11 @@
+# MkDocs generated site
+site/
+
+# Local cache / virtualenvs
+.venv/
+.cache/
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store

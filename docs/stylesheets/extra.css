@@ -1,0 +1,176 @@
+/* ==========================================================================
+   Table of Contents & Left Sidebar Custom Styling (Antigravity Theme Refinement)
+   ========================================================================== */
+
+/* Target only desktop viewports where the sidebar is statically displayed */
+@media screen and (min-width: 76.25em) {
+    /* 1. Hide the redundant active main page navigation link and label in primary sidebar */
+    .md-nav--primary > .md-nav__list > .md-nav__item--active > a.md-nav__link,
+    .md-nav--primary > .md-nav__list > .md-nav__item--active > label.md-nav__link {
+        display: none !important;
+    }
+
+    /* 2. Hide the redundant "Table of contents" sub-header label inside the integrated TOC container */
+    .md-nav--primary .md-nav--secondary > .md-nav__title {
+        display: none !important;
+    }
+
+    /* 3. Shift the integrated Table of Contents to the top-level style (remove nested indentation) */
+    .md-nav--primary .md-nav__item--active > .md-nav--secondary {
+        margin: 0 !important;
+    }
+
+    .md-nav--primary .md-nav__item--active > .md-nav--secondary > .md-nav__list {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 4. Format TOC list items and hover styles for a cleaner look */
+    .md-nav--primary .md-nav--secondary .md-nav__link {
+        padding: 0.4rem 0.8rem 0.4rem 0.8rem !important;
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--md-default-fg-color--light);
+        border-left: 2px solid transparent;
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Hover states for sidebar TOC items */
+    .md-nav--primary .md-nav--secondary .md-nav__link:hover {
+        color: var(--md-accent-fg-color);
+        background-color: var(--md-accent-fg-color--transparent);
+        border-left-color: var(--md-accent-fg-color);
+    }
+
+    /* Active states for sidebar TOC items */
+    .md-nav--primary .md-nav--secondary .md-nav__link--active {
+        color: var(--md-primary-fg-color) !important;
+        font-weight: 700;
+        border-left-color: var(--md-primary-fg-color);
+        background-color: var(--md-primary-fg-color--transparent);
+    }
+
+    /* Style for H3 nested TOC items (sub-sections) */
+    .md-nav--primary .md-nav--secondary .md-nav--secondary .md-nav__link {
+        padding-left: 1.6rem !important;
+        font-size: 0.76rem;
+        font-weight: 400;
+    }
+}
+
+/* ==========================================================================
+   In-Page Navigation Grid Dashboard (Markdown Custom Component)
+   ========================================================================== */
+.toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 2.5rem 0;
+}
+
+.toc-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    background: var(--md-default-bg-color);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 0.5rem;
+    text-decoration: none !important;
+    color: var(--md-default-fg-color) !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.25s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+/* Adjust card background for dark mode (slate palette) */
+[data-md-color-scheme="slate"] .toc-card {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+.toc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    border-color: var(--md-primary-fg-color);
+}
+
+.toc-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: var(--md-primary-fg-color);
+}
+
+.toc-card-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--md-primary-fg-color--transparent);
+    color: var(--md-primary-fg-color);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.toc-card-desc {
+    font-size: 0.8rem;
+    color: var(--md-default-fg-color--light);
+    line-height: 1.45;
+}
+
+/* ==========================================================================
+   Concept Cards Styling (Section 6)
+   ========================================================================== */
+.grid.cards > ul > li {
+    position: relative;
+    border: 1px solid var(--md-default-fg-color--lightest) !important;
+    border-radius: 0.5rem !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.25s ease !important;
+    padding: 1.25rem !important;
+}
+
+.grid.cards > ul > li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Specific hover effects for Hallucination and Grounding cards */
+.grid.cards > ul > li:nth-child(1):hover {
+    border-color: #ef4444 !important;
+}
+
+.grid.cards > ul > li:nth-child(2):hover {
+    border-color: #10b981 !important;
+}
+
+/* Adjust card background for dark mode (slate palette) */
+[data-md-color-scheme="slate"] .grid.cards > ul > li {
+    background: #1e293b;
+    border-color: #334155 !important;
+}
+
+.concept-title {
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.concept-hallucination {
+    color: #ef4444;
+}
+
+.concept-grounding {
+    color: #10b981;
+}
+
